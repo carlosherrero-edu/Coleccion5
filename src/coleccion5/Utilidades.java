@@ -356,17 +356,17 @@ public class Utilidades {
 	 * Para ello, imaginemos que las letras de la A a la Z se disponen sobre una circunferencia
 	 * Cuando nos desplacemos más allá de la Z, comenzamos de nuevo por la A
 	 *
-	 * Por ejemplo, si entre la A y la Z hubiese 25 letras y nos tenemos que desplazar 3 letras
+	 * Por ejemplo, si entre la A y la Z hubiese 26 letras y nos tenemos que desplazar 3 letras
 	 * la Y se transformará en la B. 
 	 * Es esencial el uso de la función resto
 	 * @param frase String con la frase original
-	 * @param desplaza  desplazamiento, al menos 1
-	 * @return String con la frase desplazada
+	 * @param desplaza  desplazamiento, comprendido entre 1 y 25
+	 * @return String con la frase desplazada hacia adelante o hacia la derecha
 	 * Corresponde al Ejercicio 11 de la Colección 5
 	 */
 	public static String desplazarLetras (String frase, int desplaza){
-		//si el desplazamiento no está comprendido entre 1 y 26, devolvemos la propia frase
-		if (desplaza <1 || desplaza>26 ) {
+		//si el desplazamiento no está comprendido entre 1 y 25, devolvemos la propia frase
+		if (desplaza <1 || desplaza>25 ) {
 			return frase;
 		}
 		
@@ -409,17 +409,14 @@ public class Utilidades {
 	 * se desplaza hacia atrás un número de posiciones indicada por el entero "desplaza"
 	 * Para ello, imaginemos que las letras de la A a la Z se disponen sobre una circunferencia
 	 * Cuando nos encontremos más allá de la Z, comenzamos de nuevo por la A
-	 *
-	 * Por ejemplo, si entre la A y la Z hubiese 25 letras y nos tenemos que desplazar 3 letras
-	 * la Y se transformará en la B. 
-	 * Es esencial el uso de la función resto
 	 * @param frase String con la frase original
-	 * @param desplaza  desplazamiento, al menos 1
-	 * @return String con la frase desplazada
+	 * @param desplaza  desplazamiento, comprendido entre 1 y 25
+	 * @return String con la frase desplazada "hacia atrás" o hacia la izquierda
+	 *  Corresponde al Ejercicio 12 de la Colección 5
 	 */
 	public static String desplazarLetras2 (String frase, int desplaza){
-		//si el desplazamiento no está comprendido entre 1 y 26, devolvemos la propia frase
-			if (desplaza <1 || desplaza>26 ) {
+		//si el desplazamiento no está comprendido entre 1 y 25, devolvemos la propia frase
+			if (desplaza <1 || desplaza>25 ) {
 					return frase;
 			}
 			
