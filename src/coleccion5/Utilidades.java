@@ -469,16 +469,10 @@ public class Utilidades {
 	 * @param num1: primer número entero , debe ser >0
 	 * @param num2: segundo número entero, debe ser >0
 	 * @return: entero que expresa el máximo común divisor
-	 * @throws  IllegalArgumentException  si los números no son enteros positivos
 	 * Corresponde al Ejercicio 13, Colección 5
 	 */
-	public static int maximoComun (int num1, int num2) throws IllegalArgumentException {
-		
-		//validación inicial de parámetros pasados
-		if (num1<=0 || num2<=0){
-			throw new IllegalArgumentException ("Los números deben ser enteros positivos");
-		}
-		
+	public static int maximoComun (int num1, int num2)  {
+
 		//inicialización de valores del algoritmo
 		int m, n, resto;   //variables que vamos a utilizar para el algoritmo
 		//seleccionamos m y n de forma que m>=n
@@ -511,14 +505,8 @@ public class Utilidades {
 	 * @throws  IllegalArgumentException  si los números no son enteros positivos
 	 * Corresponde al Ejercicio 13, Colección 5
 	 */	
-public static int minimoComun (int num1, int num2) throws IllegalArgumentException {
-		
-		//validación inicial de parámetros pasados
-		if (num1<=0 || num2<=0){
-			throw new IllegalArgumentException ("Los números deben ser enteros positivos");
-		}
-		
-		// si son válidos, devolvemos el resultado, usando el método maximoComun
+public static int minimoComun (int num1, int num2) {
+
 		
 		return   num1*num2 / maximoComun(num1, num2);
 }
@@ -530,17 +518,11 @@ public static int minimoComun (int num1, int num2) throws IllegalArgumentExcepti
  * @param num1: primer número entero >0
  * @param num2: segundo número entero >0
  * @return: true si son primos entre sí, false en caso contrario
- * @throws  IllegalArgumentException  si los números no son enteros positivos
  * Corresponde al ejercicio 14 de la Colección 5
  */
-public static boolean primosMutuos(int num1, int num2) throws IllegalArgumentException{
+public static boolean primosMutuos(int num1, int num2) {
 	
-	//validación inicial de parámetros pasados
-	if (num1<=0 || num2<=0){
-		throw new IllegalArgumentException ("Los números deben ser enteros positivos");
-	}
 	
-	// si son válidos, vemos si su máximo común divisor es 1
 	
 	if (maximoComun (num1, num2) >1)
 		return false;
@@ -555,13 +537,12 @@ public static boolean primosMutuos(int num1, int num2) throws IllegalArgumentExc
  * Para ello, se van probando como divisores posibles todos los enteros desde 2 hasta el más próximo a la raíz del número
  * @param num:  número entero >2
  * @return: true si es número primo, false en caso contrario
- * @throws  IllegalArgumentException  si el número no es mayor de 2
  * Corresponde al Ejercicio 14, Colección 5
  */
 
-public static boolean esPrimo (int num) throws IllegalArgumentException {
+public static boolean esPrimo (int num) {
 	
-	if (num>2){
+
 		boolean esPrimo=true;
 		
 		for (int i=2 ; i<=Math.sqrt(num); i++){
@@ -575,9 +556,6 @@ public static boolean esPrimo (int num) throws IllegalArgumentException {
 		} //fin del bucle for
 		
 		return esPrimo;
-	} else {
-		throw new IllegalArgumentException ("El número tiene que ser mayor que 2");
-	}
 	
 	
 }//fin del método esPrimo
