@@ -97,14 +97,8 @@ public class Utilidades {
 	 * Corresponde al Ejercicio3, Colección 5
 	 */
 	public static String fraseAlReves (String cadena){
-	 		int longitud = cadena.length();
-	 		String resultado = "";   //variable donde iremos guardando el resultado
-	 		for (int i=0; i<longitud; i++) {
-	 			resultado = cadena.charAt(i)+resultado;
-	 		}
 	 		
-	 		
-	 		return resultado;
+	 		return "";
 
 	 	} //fin del método fraseAlReves
 	
@@ -118,19 +112,7 @@ public class Utilidades {
 	 */
 	public static boolean esPalindromo (String cadena){
 		
-		// eliminamos primero los espacios el blanco de la cadena de entrada
-		String cadenaSinBlancos="";   
-		char letra;
-		for (int i=0; i<cadena.length(); i++){
-			if ((letra=cadena.charAt(i)) != ' '){
-				cadenaSinBlancos += letra;
-			}
-			//en caso contrario, si es un blanco, se ignora
-		}
-		
-	 	String cadenaInvertida = Utilidades.fraseAlReves(cadenaSinBlancos);
-	 	//comparamos las 2 cadenas con el método equalsIgnoreCase, que no diferencia entre mayúsculas y minúsculas
-	 	return   cadenaSinBlancos.equalsIgnoreCase(cadenaInvertida);       
+		return true; 
 	 } //fin del método
 	
 	/**
@@ -140,85 +122,7 @@ public class Utilidades {
 	 */
 	public static void devolverCambio (double euros){
 		
-		//sólo vamos a devolver el cambio en monedas de euros
 		
-		
-		if (euros >=10) {
-			System.out.println(" No entrego cambio para más de 10 euros");
-			return;
-		} else if (euros<=0){
-			System.out.println(" Debes introducir un importe de al menos 0.01 euros");
-			return;
-		}
-		
-		else{
-			
-			//variables con las posibles monedas de céntimos, que inicializamos a 0
-			int cent_1=0, cent_2=0, cent_5=0, cent_10=0, cent_20=0, cent_50=0;
-			//variables con las posibles monedas de euro, que inicializamos a 0
-			int eur_1=0, eur_2=0;
-			//convertimos la cantidad a céntimos de euro
-			int centimos=(int)(euros*100) ;  
-			
-			/* Para cada moneda, realizamos el cálculo en dos pasos
-			 * 1: Obtenemos el número de monedas de ese valor realizando la división entera por dicho valor
-			 * 2: OBtenemos el importe en céntimos aún no convertido como el resto de dividir entre ese valor
-			 * Empezamos por la moneda de mayor valor, la de 2 euros
-			 */
-			if(centimos>=200){
-				eur_2= centimos / 200 ;  //cantidad de monedas de 2 euros
-				centimos = centimos % 200; //cantidad que no podemos convertir en monedas de 2 euros
-			}
-			
-			if(centimos>=100){
-				eur_1= centimos / 100 ;  //cantidad de monedas de 1 euro
-				centimos = centimos % 100;
-			}
-			
-			if(centimos>=50){
-				cent_50 = centimos / 50 ;  //cantidad de monedas de 50 céntimos
-				centimos = centimos % 50;
-			}
-			
-			if(centimos>=20){
-				cent_20 = centimos / 20 ;  //cantidad de monedas de 20 céntimos
-				centimos = centimos % 20;
-			}
-			
-			if(centimos>=10){
-				cent_10 = centimos / 10 ;  //cantidad de monedas de 10 céntimos
-				centimos = centimos % 10;
-			}
-			
-			if(centimos>=5){
-				cent_5 = centimos / 5 ;  //cantidad de monedas de 5 céntimos
-				centimos = centimos % 5;
-			}
-			
-			if(centimos>=2){
-				cent_2 = centimos / 2 ;//cantidad de monedas de 2 céntimos
-			}
-			
-			cent_1 = centimos % 2 ;   //lo que quede, serán monedas de 1 céntimo
-			
-			/* este ejercicio sería más corto y elegante con colecciones 
-			 * pero aún no las conocemos...
-			 */
-			
-			/*hechas las operaciones, hay que imprimir los resultados
-			 * sólo mostramos los valores de monedas de las que se devuelve alguna
-			 */
-			System.out.print(eur_2 > 0 ? "\n Monedas de 2 euros: " +eur_2 : "");
-			System.out.print(eur_1 > 0 ? "\nMonedas de 1 euro: " +eur_1 : "");
-			System.out.print( cent_50 > 0 ? " \nMonedas de 50 céntimos: " +cent_50 : "");
-			System.out.print( cent_20 > 0 ? "\n Monedas de 20 céntimos: " +cent_20 : "");
-			System.out.print( cent_10 > 0 ? "\n Monedas de 10 céntimos: " +cent_10 : "");
-			System.out.print( cent_5 > 0 ? "\n Monedas de 5 céntimos: " +cent_5 : "");
-			System.out.print( cent_2 > 0 ? "\n Monedas de 2 céntimos: " +cent_2 : "");
-			System.out.print( cent_1 > 0 ? "\n Monedas de 1 céntimo: " +cent_1 : "");		
-			
-			
-		} //fin del else
 			
 	}  //fin del método devolverCambio
 	
@@ -236,30 +140,9 @@ public class Utilidades {
 	*/
 	 public static int cuentaPalabras (String cadena){
 		 
-		//número de palabras que contamos
-		 int palabras = 0;         
-		 // esta variable la usamos para indicar si el anterior carácter era también separador
-		 boolean prev_separador = false;
-		 
-		 for (int i=0; i < cadena.length(); i++) {
-			 if ( cadena.charAt(i) ==' ' || cadena.charAt(i) =='\t' ||cadena.charAt(i) =='\n') {
-				 // si el anterior carácter no era separador, estamos ante una nueva palabra
-				 if (!prev_separador) {
-					    palabras++;
-				 }	    
-				 //en cualquier caso, marcamos a True la variable prev_separador 
-				 // así, si el próximo caracter es también separador, no se contará una nueva palabra
-				 prev_separador = true;
-			 }
-			 // si el carácter no es separador, no incrementamos el número de palabras y ponemos a false la variable
-			 else {
-				 prev_separador = false;
-			 }
-				 
-		} // finaliza el bucle for
-		 
-		 //si la cadena no es vacía, hay que sumar la última palabra, que no va seguida de separador
-		 return   (cadena.length() >0 ? palabras+1 : palabras);
+	
+		 return 0;      
+		
 	 }  //fin del método cuentaPalabras
 	 
 	 
@@ -271,22 +154,7 @@ public class Utilidades {
 	 */
 	public static void ordenar3Numeros (double num1, double num2, double num3 ){
 		 
-		 /*Una forma de abordarlo es dándonos  cuenta de que con 3 números, las ordenaciones posibles son 6
-		  * en generar con N números las ordenaciones posibles vienen dadas por N!
-		  * ya sólo con 4, tendremos 4! = 24 ordenaciones, por lo que este algoritmo sólo es admisible hasta 3
-		  */
-		 if (num1 <= num2  && num2 <= num3)
-			System.out.println( "El orden es :" + num1 + " <= " +num2 + " <= " + num3) ;
-		 else if (num1 <= num3  && num3 <= num2)
-			 System.out.println( "El orden es :" + num1 + " <= " +num3 + " <= " + num2) ;
-		 else if (num2 <= num1  && num1 <= num3)
-			 System.out.println( "El orden es :" + num2 + " <= " +num1 + " <= " + num3) ;
-		 else if (num2 <= num3  && num3 <= num1)
-			 System.out.println( "El orden es :" + num2 + " <= " +num3 + " <= " + num1) ;
-		 else if (num3 <= num1  && num1 <= num2)
-			 System.out.println( "El orden es :" + num3 + " <= " +num1 + " <= " + num2) ;
-		 else if (num3 <= num2  && num2 <= num1)
-			 System.out.println( "El orden es :" + num3 + " <= " +num2 + " <= " + num1) ;
+		
 		 
 
 	 }//fin del método
@@ -300,19 +168,6 @@ public class Utilidades {
 	public static String apostarQuiniela () {
 		
 		String resultado ="";
-		//inicializamos un objeto de la clase SecureRandom
-		SecureRandom azar= new SecureRandom();
-		
-		for (int i=1; i<=14; i++) {
-			int tirada= azar.nextInt(2); 
-			//el valor obtenido puede ser 0, 1 ó 2
-			if (tirada>0) {
-				resultado+= tirada;
-			}else {
-				//interpretamos el resultado 0 como 'X'
-				resultado+= 'X';
-			}
-		}
 		
 		return resultado;
 	}
@@ -324,30 +179,7 @@ public class Utilidades {
 	 */
 	public static void lanzarMoneda (int intentos) {
 		
-		//comprobamos que el número de intentos sea al menos 1000
-		if (intentos < 1000) {
-			System.out.println("El número mínimo de intentos es de 1000");
-			
-		} else {
 		
-			//inicializamos un objeto de la clase SecureRandom
-			SecureRandom azar= new SecureRandom();
-			
-			//valores iniciales de las caras y cruces obtenidas
-			int cara=0, cruz=0;
-			for (int i=0; i< intentos; i++){
-				//el método nextDouble() genera un número decimal aleatorio entre 0 y 1, sin llegar a 1
-				if (azar.nextDouble()<0.5) {
-					cara ++;
-				} else { 
-					cruz++;
-				}
-			}
-			//al final del bucle, imprimimos los resultados:
-			
-			System.out.format("\nNúmero de caras : %d: * Porcentaje : %.2f %%", cara, (100.0*cara)/intentos);
-			System.out.format("\nNúmero de cruces : %d: * Porcentaje : %.2f %%", cruz, (100.0*cruz)/intentos);
-		}
 	} //fin del método
 
 	/**
@@ -365,40 +197,10 @@ public class Utilidades {
 	 * Corresponde al Ejercicio 11 de la Colección 5
 	 */
 	public static String desplazarLetras (String frase, int desplaza){
-		//si el desplazamiento no está comprendido entre 1 y 25, devolvemos la propia frase
-		if (desplaza <1 || desplaza>25 ) {
-			return frase;
-		}
+		
 		
 		String fraseDesplazada="";
-		char letra, nuevaLetra;
-		int distancia;
 		
-		//convertimos a mayuscula  la nueva frase con el método toUpperCase
-		frase = frase.toUpperCase();
-	
-		
-		//ahora hacemos el desplazmaiento circular
-		for (int i=0; i< frase.length(); i++){
-			
-			//en lugar de trabajar con los códigos ASCII de 'A', 'Z',... trabajamos con los valores char directamente
-			
-			letra = frase.charAt(i);
-			if (letra== ' ') {
-				// si es igual al espacio en blanco, la copiamos sin más
-				fraseDesplazada += letra;
-			} else {
-				//hallamos la distancia entre la letra leída y la letra 'A', comienzo del alfabeto
-				distancia= frase.charAt(i) - 'A';
-				//incremetnamos esta distancia en el desplazamiento pedido, cuidando que no pase de 26
-				distancia = (distancia + desplaza) % ('Z'- 'A');
-				
-				//generamos la letra desplazada "sumando" al carácter 'A' la nueva distancia
-				nuevaLetra= (char)('A' + distancia);
-				fraseDesplazada += nuevaLetra;
-			}
-			
-		}
 		
 		return fraseDesplazada;
 		
@@ -415,48 +217,10 @@ public class Utilidades {
 	 *  Corresponde al Ejercicio 12 de la Colección 5
 	 */
 	public static String desplazarLetras2 (String frase, int desplaza){
-		//si el desplazamiento no está comprendido entre 1 y 25, devolvemos la propia frase
-			if (desplaza <1 || desplaza>25 ) {
-					return frase;
-			}
-			
-			String fraseDesplazada="";
-			char letra, nuevaLetra;
-			int distancia;
-			
-			//convertimos a mayuscula  la nueva frase con el método toUpperCase
-			frase = frase.toUpperCase();
 		
 			
-			//ahora hacemos el desplazmaiento circular
-			for (int i=0; i< frase.length(); i++){
-				
-				//en lugar de trabajar con los códigos ASCII de 'A', 'Z',... trabajamos con los valores char directamente
-				
-				letra = frase.charAt(i);
-				if (letra == ' ') {
-					// si es igual al espacio en blanco, la copiamos sin más
-					fraseDesplazada += letra;
-				} else {
-					//hallamos la distancia entre la letra leída y la letra 'A', comienzo del alfabeto
-					distancia= frase.charAt(i) - 'A';
-					//disminuimos esta distancia en el desplazamiento pedido, cuidando que no pase de 26
-					distancia = (distancia - desplaza) % ('Z'- 'A');
-					//si la distancia es negativa, tendremos que "restar" el nuevo carácter desde la Z
-					if (distancia >= 0) {
-						nuevaLetra= (char)('A' + distancia);
-						
-					} else {
-						nuevaLetra= (char)('Z' - distancia);
-						
-					}
-					
-					//generamos la letra desplazada "sumando" al carácter 'A' la nueva distancia
-
-					fraseDesplazada += nuevaLetra;
-				}
-				
-			}
+			String fraseDesplazada="";
+			
 			
 			return fraseDesplazada;
 		
