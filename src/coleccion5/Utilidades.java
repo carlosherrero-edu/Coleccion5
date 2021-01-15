@@ -391,7 +391,7 @@ public class Utilidades {
 				//hallamos la distancia entre la letra leída y la letra 'A', comienzo del alfabeto
 				distancia= frase.charAt(i) - 'A';
 				//incremetnamos esta distancia en el desplazamiento pedido, cuidando que no pase de 26
-				distancia = (distancia + desplaza) % ('Z'- 'A');
+				distancia = (distancia + desplaza) % ('Z'- 'A'+1);
 				
 				//generamos la letra desplazada "sumando" al carácter 'A' la nueva distancia
 				nuevaLetra= (char)('A' + distancia);
@@ -438,20 +438,14 @@ public class Utilidades {
 					// si es igual al espacio en blanco, la copiamos sin más
 					fraseDesplazada += letra;
 				} else {
-					//hallamos la distancia entre la letra leída y la letra 'A', comienzo del alfabeto
-					distancia= frase.charAt(i) - 'A';
-					//disminuimos esta distancia en el desplazamiento pedido, cuidando que no pase de 26
-					distancia = (distancia - desplaza) % ('Z'- 'A');
-					//si la distancia es negativa, tendremos que "restar" el nuevo carácter desde la Z
-					if (distancia >= 0) {
-						nuevaLetra= (char)('A' + distancia);
-						
-					} else {
-						nuevaLetra= (char)('Z' - distancia);
-						
-					}
+					//hallamos la distancia entre la letra leída y la letra 'Z', final del alfabeto
+					distancia= 'Z'-frase.charAt(i);
+					//sumamos esta distancia en el desplazamiento pedido, cuidando que no pase de 26
+					distancia = (distancia + desplaza) % ('Z'- 'A'+1);
 					
-					//generamos la letra desplazada "sumando" al carácter 'A' la nueva distancia
+					
+					//generamos la letra desplazada "restando" al carácter 'Z' la nueva distancia
+					nuevaLetra= (char)('Z' - distancia);
 
 					fraseDesplazada += nuevaLetra;
 				}
@@ -560,5 +554,62 @@ public static boolean esPrimo (int num) {
 	
 }//fin del método esPrimo
 
+/**
+ * Función para transformar un número entero en su equivalente en otro sistema de numeración
+ * @param numero número entero largo
+ * @param base sistema de numeración al que le convertimos, entre 2 y 9
+ * @return  cadena con el número transformado a la base indicada
+ * damos en resultado como String para permitir cadenas largas en bases pequeñas, como en la base 2
+ */
+public static String convertirABase (long numero, int base) {
+	long resto;
+	String resultado="";
+	 while ( numero/base >0) {
+		 resto= numero % base;   
+		 numero = numero / base;
+		 resultado = resto + resultado;
+	 }
+	 //cuando nos salgamos del bucle, hay que concatenar el último cociente obtenido
+	 resultado = numero + resultado;
+	 return  resultado;
+} //fin del método
+
+
+/**
+ * Método para convertir un número entero en una base o sistema de numeración al sistema decimal
+ * @param cadenaEntrada cadena con las cifras del número en la base indicada
+ * @param base sistema de numeración al que le convertimos, entre 2 y 9
+ * @return entero largo con el valor equivalente en base 10
+ * el número original lo introducimos como String para permitir cadenas largas en bases pequeñas, como la base 2
+ */
+public static long convertirADecimal (String cadenaEntrada, int base) {
+	long resultado=0;
+	int digito;
+
+	
+	for (int i=0; i<cadenaEntrada.length(); i++) {
+		//vamos tomando los caracteres de la cadena en sentido inverso
+		digito= (int) (cadenaEntrada.charAt( cadenaEntrada.length()-1-i) - '0');
+		resultado += digito*Math.pow(base,i);
+		
+	}
+	return resultado;
+	
+	 
+} //fin del método
+
+public static boolean baseCorrecta(int base) {
+	
+	boolean esCorrecta =false;
+	if (base>1 && base <10) {
+		esCorrecta = true;
+	}
+	return esCorrecta;
+	
+}
+
 
 }
+	 
+	
+
